@@ -1,0 +1,6 @@
+.ansible/
+.DS_Store
+.vscode/
+.idea/
+.cursorrules
+.cursor/
