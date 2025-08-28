@@ -62,49 +62,52 @@ dockitems_persist:
   - name: "Firefox"
     path: "/Applications/Firefox.app"
     pos: 3
+  - name: "Mail"
+    path: "/Applications/Mail.app"
+    pos: 4
   - name: "Signal"
     path: "/Applications/Signal.app"
-    pos: 4
+    pos: 5
   - name: "Vesktop"
     path: "/Applications/Vesktop.app"
-    pos: 5
+    pos: 6
   - name: "Telegram"
     path: "/Applications/Telegram Desktop.app"
-    pos: 6
+    pos: 7
   - name: "Tidal"
     path: "/Applications/TIDAL.app"
-    pos: 7
+    pos: 8
   - name: "Infuse"
     path: "/Applications/Infuse.app"
-    pos: 8
+    pos: 9
   - name: "OrbStack"
     path: "/Applications/OrbStack.app"
-    pos: 9
+    pos: 10
   - name: "Cursor"
     path: "/Applications/Cursor.app"
-    pos: 10
+    pos: 11
   - name: "Obsidian"
     path: "/Applications/Obsidian.app"
-    pos: 11
+    pos: 12
   - name: "1Password"
     path: "/Applications/1Password.app"
-    pos: 12
+    pos: 13
   - name: "Yubico Authenticator"
     path: "/Applications/Yubico Authenticator.app"
-    pos: 13
+    pos: 14
   - name: "Localsend"
     path: "/Applications/Localsend.app"
-    pos: 14
+    pos: 15
   - name: "System Settings"
     path: "/System/Applications/System Settings.app"
-    pos: 15
+    pos: 16
 
 ##########################################
 # Configure Defaults - Not always working.
 ##########################################
 
 defaults:
-  "com.apple.dock orientation": "left" # Dock on left
+  "com.apple.dock orientation": "right" # Dock on right
   "com.apple.dock autohide": "1" # Dock autohide
   "com.apple.dock magnification": "false" # Dock icon magnification
   "com.apple.dock largesize": "64" # Dock large icon size (if magnification is enabled)
