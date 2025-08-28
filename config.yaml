@@ -1,6 +1,7 @@
 ---
 configure_terminal: true # Install charlieterm - modified N0tch2k Colour Scheme and IBM Plex Mono Font (Nerd Font)
-configure_zshrc: true # Copy .zshrc 
+configure_zshrc: true # Copy .zshrc
 configure_brew: true # Install Homebrew packages
 configure_mas: true # Install Mac App Store apps
 configure_dock: true # Configure Dock
+configure_git: true # Configure Git

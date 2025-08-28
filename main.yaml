@@ -7,10 +7,17 @@
     - app_config.yaml
 
   roles:
-    #- geerlingguy.mac.mas
-    #- geerlingguy.mac.homebrew
+    - role: geerlingguy.mac.mas
+      when: configure_mas
+    - role: geerlingguy.mac.homebrew
+      when: configure_brew
+    - role: geerlingguy.mac.dock
+      when: configure_dock
 
   tasks:
     - name: Configure Terminal
       ansible.builtin.include_tasks: tasks/terminal.yaml
       when: configure_terminal
+    - name: Configure Git
+      ansible.builtin.include_tasks: tasks/git.yaml
+      when: configure_git
