@@ -21,5 +21,9 @@ Configure Hardening - `config.yaml` > "Hardening"
 - Run `ansible-playbook -K main.yaml`
 > `-K` asks for your `become` password, which is your user/sudo password, this will be used when tasks require sudo.
 
+## My setup
+This is my setup :P\
+For a full insight on how else I configure my mac (not everything can be automated) see [this](/full-setup.md).
+
 ## Tools for configuration
 > Detect changes to defaults - `tools/defaultschanges.sh`

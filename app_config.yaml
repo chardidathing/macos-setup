@@ -37,6 +37,8 @@ homebrew_cask_apps:
   - android-studio
   - android-platform-tools
   - orbstack
+  - prismlauncher
+  - steam
 
 ##########################################
 # Installed Mac App Store Apps
