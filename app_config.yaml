@@ -25,6 +25,8 @@ homebrew_cask_apps:
   - vlc
   - obsidian
   - localsend
+  - android-studio
+  - android-platform-tools
 
 mas_installed_apps:
   - { id: 1037126344, name: "Apple Configurator 2" }
