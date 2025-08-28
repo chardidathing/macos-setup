@@ -19,3 +19,6 @@ PROMPT="${CYAN}[${MAGENTA}%n@%m${CYAN}] ${BRIGHT_BLUE}%~ ${MAGENTA}%# ${RESET}"
 if command -v brew &>/dev/null; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# fortune telling cow
+alias tellmeafortune='fortune | cowsay | lolcat'
