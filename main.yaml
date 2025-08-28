@@ -1,0 +1,16 @@
+---
+- name: macOS Setup - chardidathing
+  hosts: localhost
+
+  vars_files:
+    - config.yaml
+    - app_config.yaml
+
+  roles:
+    #- geerlingguy.mac.mas
+    #- geerlingguy.mac.homebrew
+
+  tasks:
+    - name: Configure Terminal
+      ansible.builtin.include_tasks: tasks/terminal.yaml
+      when: configure_terminal

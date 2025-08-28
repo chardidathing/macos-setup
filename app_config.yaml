@@ -1,0 +1,33 @@
+---
+homebrew_installed_packages:
+  - btop
+  - fastfetch
+  - nmap
+  - cowsay
+  - fortune
+  - lolcat
+  - figlet
+
+homebrew_cask_apps:
+  - font-blex-mono-nerd-font
+  - signal
+  - tidal
+  - pika
+  - linearmouse
+  - yubico-authenticator
+  - yubico-yubikey-manager
+  - vesktop
+  - firefox
+  - cursor
+  - 1password
+  - balenaetcher
+  - telegram-desktop
+  - vlc
+  - obsidian
+  - localsend
+
+mas_installed_apps:
+  - { id: 1037126344, name: "Apple Configurator 2" }
+  - { id: 1451685025, name: "WireGuard" }
+  - { id: 6444217677, name: "Lickable Menu Bar" }
+  - { id: 1136220934, name: "Infuse" }

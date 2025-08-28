@@ -1,0 +1,32 @@
+---
+- name: Copy .zshrc
+  ansible.builtin.copy:
+    src: files/.zshrc
+    dest: ~/.zshrc
+
+- name: Get current Terminal profile
+  ansible.builtin.command: defaults read com.apple.terminal 'Default Window Settings'
+  register: terminal_theme
+  changed_when: false
+  failed_when: false
+  check_mode: false
+
+- name: Copy Terminal profile to /tmp
+  ansible.builtin.copy:
+    src: files/charlieterm.terminal
+    dest: /tmp/charlieterm.terminal
+  changed_when: false
+  when: "'charlieterm' not in terminal_theme.stdout"
+
+- name: Ensure Terminal profile is added
+  ansible.builtin.command: open /tmp/charlieterm.terminal
+  changed_when: false
+  when: "'charlieterm' not in terminal_theme.stdout"
+
+- name: Ensure Terminal profile is set as default
+  ansible.builtin.command: "{{ item }}"
+  with_items:
+    - defaults write com.apple.terminal 'Default Window Settings' -string charlieterm
+    - defaults write com.apple.terminal 'Startup Window Settings' -string charlieterm
+  changed_when: false
+  when: "'charlieterm' not in terminal_theme.stdout"
