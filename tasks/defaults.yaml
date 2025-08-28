@@ -77,8 +77,9 @@
   when: disable_screenshot_filename_timestamp
   changed_when: false
 
-- name: Enable screensaver with password
+- name: Enable screensaver with password (enable screensaver after 5 minutes)
   ansible.builtin.shell:
+    defaults -currentHost write com.apple.screensaver idleTime 300 &&
     sudo defaults write /Library/Preferences/com.apple.screensaver askForPassword -bool true &&
     sudo defaults write /Library/Preferences/com.apple.screensaver 'askForPasswordDelay' -int 5
   when: enable_screensaver_with_password
