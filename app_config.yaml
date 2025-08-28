@@ -11,6 +11,8 @@ homebrew_installed_packages:
   - lolcat
   - figlet
   - dockutil
+  - ansible
+  - ansible-lint
 
 ##########################################
 # Installed Homebrew Casks
@@ -32,9 +34,9 @@ homebrew_cask_apps:
   - vlc
   - obsidian
   - localsend
-  #- android-studio
-  #- android-platform-tools
-  #- orbstack
+  - android-studio
+  - android-platform-tools
+  - orbstack
 
 ##########################################
 # Installed Mac App Store Apps
