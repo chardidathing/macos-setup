@@ -26,3 +26,6 @@
     - name: Configure SSH
       ansible.builtin.include_tasks: tasks/ssh.yaml
       when: configure_ssh
+    - name: Configure Defaults
+      ansible.builtin.include_tasks: tasks/defaults.yaml
+      when: configure_defaults

@@ -1,4 +1,7 @@
 ---
+##########################################
+# Installed Homebrew Packages
+##########################################
 homebrew_installed_packages:
   - btop
   - fastfetch
@@ -7,9 +10,13 @@ homebrew_installed_packages:
   - fortune
   - lolcat
   - figlet
+  - dockutil
 
+##########################################
+# Installed Homebrew Casks
+##########################################
 homebrew_cask_apps:
-  - font-blex-mono-nerd-font
+  - font-blex-mono-nerd-font # IBM Plex Mono Nerd Font - charlieterm depends on this, so don't remove it if you're using that.
   - signal
   - tidal
   - pika
@@ -25,10 +32,13 @@ homebrew_cask_apps:
   - vlc
   - obsidian
   - localsend
-  - android-studio
-  - android-platform-tools
-  - orbstack
+  #- android-studio
+  #- android-platform-tools
+  #- orbstack
 
+##########################################
+# Installed Mac App Store Apps
+##########################################
 mas_installed_apps:
   - { id: 1037126344, name: "Apple Configurator 2" }
   - { id: 1451685025, name: "WireGuard" }

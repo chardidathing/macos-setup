@@ -1,4 +1,20 @@
 ---
+##########################################
+# Git Configuration
+##########################################
+
+git_user_name: "Charlie"
+git_user_email: "charlie.mizutsuki@posteo.net"
+git_commit_signing_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHOKe9RPWfuvNm87Bq905FgAmNG1Ueg39QJ0AHJMljzj"
+git_editor: "nano"
+git_commit_signing_enabled: true
+git_gpg_format: "ssh"
+git_gpg_ssh_program: "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+##########################################
+# Toggle Configuration
+##########################################
+
 configure_terminal: true # Install charlieterm - modified N0tch2k Colour Scheme and IBM Plex Mono Font (Nerd Font)
 configure_zshrc: true # Copy .zshrc
 configure_brew: true # Install Homebrew packages
@@ -6,6 +22,11 @@ configure_mas: true # Install Mac App Store apps
 configure_dock: true # Configure Dock
 configure_git: true # Configure Git
 configure_ssh: true # Configure SSH
+configure_defaults: true # Configure macOS defaults
+
+##########################################
+# Items to remove from dock
+##########################################
 
 dockitems_remove:
   - Safari
@@ -25,3 +46,91 @@ dockitems_remove:
   - Music
   - Reminders
   - Calendar
+  - Pages
+  - Keynote
+  - Numbers
+  - iMovie
+  - GarageBand
+  - App Store
+  - System Settings
+
+##########################################
+# Items to place in dock
+##########################################
+
+dockitems_persist:
+  - name: "Firefox"
+    path: "/Applications/Firefox.app"
+    pos: 3
+  - name: "Signal"
+    path: "/Applications/Signal.app"
+    pos: 4
+  - name: "Vesktop"
+    path: "/Applications/Vesktop.app"
+    pos: 5
+  - name: "Telegram"
+    path: "/Applications/Telegram Desktop.app"
+    pos: 6
+  - name: "Tidal"
+    path: "/Applications/TIDAL.app"
+    pos: 7
+  - name: "Infuse"
+    path: "/Applications/Infuse.app"
+    pos: 8
+  - name: "OrbStack"
+    path: "/Applications/OrbStack.app"
+    pos: 9
+  - name: "Cursor"
+    path: "/Applications/Cursor.app"
+    pos: 10
+  - name: "Obsidian"
+    path: "/Applications/Obsidian.app"
+    pos: 11
+  - name: "1Password"
+    path: "/Applications/1Password.app"
+    pos: 12
+  - name: "Yubico Authenticator"
+    path: "/Applications/Yubico Authenticator.app"
+    pos: 13
+  - name: "Localsend"
+    path: "/Applications/Localsend.app"
+    pos: 14
+  - name: "System Settings"
+    path: "/System/Applications/System Settings.app"
+    pos: 15
+
+##########################################
+# Configure Defaults - Not always working.
+##########################################
+
+defaults:
+  "com.apple.dock orientation": "left" # Dock on left
+  "com.apple.dock autohide": "1" # Dock autohide
+  "com.apple.dock magnification": "false" # Dock icon magnification
+  "com.apple.dock largesize": "64" # Dock large icon size (if magnification is enabled)
+  "com.apple.dock tilesize": "28" # Dock icon size
+  "com.apple.dock autohide-delay": "0" # Dock autohide delay
+  "com.apple.dock autohide-time-modifier": "0" # Dock autohide time modifier
+  "com.apple.WindowManager EnableStandardClickToShowDesktop": "0" # Disable click to show desktop
+  "com.apple.WindowManager StandardHideWidgets": "0" # Hide widgets on desktop
+
+##########################################
+# Hardening
+##########################################
+
+disable_firefox_telemetry: true
+disable_online_spellcheck: true
+disable_siri: true
+disable_remote_apple_events: true
+disable_automatic_saving_in_icloud_drive: true
+disable_icloud_drive: true
+disable_dock_recents: true
+disable_spotlight_indexing: true
+disable_ad_tracking: true
+disable_screenshot_filename_timestamp: true
+enable_screensaver_with_password: true
+disable_unauthorized_insecure_logins: true
+disable_printer_sharing: true
+disable_captive_portal_detection: true
+disable_automatic_allow_for_incoming_traffic: true
+enable_firewall_with_stealth_mode: true

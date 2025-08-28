@@ -1,0 +1,127 @@
+---
+- name: Configure macOS defaults
+  ansible.builtin.command: >
+    defaults write {{ item.key }}
+    {%- if item.value is number %}
+    {%- if item.value | string | regex_search('\.') %} -float {{ item.value }}
+    {%- else %} -int {{ item.value }}
+    {%- endif %}
+    {%- else %} {{ item.value }}
+    {%- endif %}
+  loop: "{{ defaults | dict2items }}"
+  when: configure_defaults
+  changed_when: false
+
+- name: Disable Firefox Telemetry
+  ansible.builtin.shell:
+    sudo defaults write /Library/Preferences/org.mozilla.firefox EnterprisePoliciesEnabled -bool TRUE && 
+    sudo defaults write /Library/Preferences/org.mozilla.firefox DisableTelemetry -bool TRUE
+  when: disable_firefox_telemetry
+  become: true
+  changed_when: false
+
+- name: Disable online spellcheck
+  ansible.builtin.shell: defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+  when: disable_online_spellcheck
+  changed_when: false
+
+- name: Disable Siri
+  ansible.builtin.shell:
+    defaults write com.apple.assistant.support 'Assistant Enabled' -bool false &&
+    defaults write com.apple.SetupAssistant 'DidSeeSiriSetup' -bool True &&
+    defaults write com.apple.systemuiserver 'NSStatusItem Visible Siri' 0 &&
+    defaults write com.apple.Siri 'StatusMenuVisible' -bool false &&
+    defaults write com.apple.Siri 'UserHasDeclinedEnable' -bool true &&
+    defaults write com.apple.assistant.support 'Siri Data Sharing Opt-In Status' -int 2 &&
+    defaults write com.apple.assistant.backedup 'Use device speaker for TTS' -int 3 # Does this remove all system TTS?
+  when: disable_siri
+  changed_when: false
+
+- name: Disable remote Apple events
+  ansible.builtin.shell: sudo systemsetup -setremoteappleevents off
+  when: disable_remote_apple_events
+  become: true
+  changed_when: false
+
+- name: Disable automatic saving in iCloud Drive
+  ansible.builtin.shell: defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+  when: disable_automatic_saving_in_icloud_drive
+  changed_when: false
+
+- name: Disable iCloud Drive
+  ansible.builtin.shell: defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+  when: disable_icloud_drive
+  changed_when: false
+
+- name: Disable Dock Recents
+  ansible.builtin.shell: defaults write com.apple.dock show-recents -bool false
+  when: disable_dock_recents
+  changed_when: false
+
+- name: Disable Spotlight indexing
+  ansible.builtin.shell: sudo mdutil -i off -d /
+  when: disable_spotlight_indexing
+  become: true
+  changed_when: false
+
+- name: Disable tracking and personalization for advertisements
+  ansible.builtin.shell:
+    defaults write com.apple.AdLib allowIdentifierForAdvertising -bool false &&
+    defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false &&
+    defaults write com.apple.AdLib forceLimitAdTracking -bool true
+  when: disable_ad_tracking
+  changed_when: false
+
+- name: Disable date and time in screenshot filenames
+  ansible.builtin.shell: defaults write 'com.apple.screencapture' 'include-date' -bool false
+  when: disable_screenshot_filename_timestamp
+  changed_when: false
+
+- name: Enable screensaver with password
+  ansible.builtin.shell:
+    sudo defaults write /Library/Preferences/com.apple.screensaver askForPassword -bool true &&
+    sudo defaults write /Library/Preferences/com.apple.screensaver 'askForPasswordDelay' -int 5
+  when: enable_screensaver_with_password
+  become: true
+  changed_when: false
+
+- name: Disable unauthorized/insecure logins (TFTP, Telnet)
+  ansible.builtin.shell:
+    echo 'yes' | sudo systemsetup -setremotelogin off &&
+    sudo launchctl disable 'system/com.apple.tftpd' &&
+    sudo launchctl disable system/com.apple.telnetd
+  when: disable_unauthorized_insecure_logins
+  become: true
+  changed_when: false
+
+- name: Disable printer sharing
+  ansible.builtin.shell: sudo cupsctl --no-share-printers
+  when: disable_printer_sharing
+  become: true
+  changed_when: false
+
+- name: Disable captive portal detection
+  ansible.builtin.shell: sudo defaults write '/Library/Preferences/SystemConfiguration/com.apple.captive.control.plist' Active -bool false
+  when: disable_captive_portal_detection
+  become: true
+  changed_when: false
+
+- name: Disable automatic allow for incoming traffic
+  ansible.builtin.shell: 
+    sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool false &&
+    sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -bool false
+  when: disable_automatic_allow_for_incoming_traffic
+  become: true
+  changed_when: false
+
+- name: Enable firewall with stealth mode
+  ansible.builtin.shell: 
+    /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on &&
+    sudo defaults write /Library/Preferences/com.apple.alf globalstate -bool true &&
+    sudo defaults write com.apple.security.firewall EnableFirewall -bool true &&
+    /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on &&
+    sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true &&
+    sudo defaults write com.apple.security.firewall EnableStealthMode -bool true
+  when: enable_firewall_with_stealth_mode
+  become: true
+  changed_when: false

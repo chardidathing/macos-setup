@@ -3,40 +3,40 @@
   ansible.builtin.git_config:
     name: user.name
     scope: global
-    value: "Charlie"
+    value: "{{ git_user_name }}"
 
 - name: Configure Git email
   ansible.builtin.git_config:
     name: user.email
     scope: global
-    value: "charlie.mizutsuki@posteo.net"
+    value: "{{ git_user_email }}"
 
 - name: Configure Git editor
   ansible.builtin.git_config:
     name: core.editor
     scope: global
-    value: "nano"
+    value: "{{ git_editor }}"
 
 - name: Configure Git commit signing key
   ansible.builtin.git_config:
     name: user.signingkey
     scope: global
-    value: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHOKe9RPWfuvNm87Bq905FgAmNG1Ueg39QJ0AHJMljzj"
+    value: "{{ git_commit_signing_key }}"
 
 - name: Enable Git commit signing by default
   ansible.builtin.git_config:
     name: commit.gpgsign
     scope: global
-    value: "true"
+    value: "{{ git_commit_signing_enabled }}"
 
 - name: Configure Git GPG format to SSH
   ansible.builtin.git_config:
     name: gpg.format
     scope: global
-    value: "ssh"
+    value: "{{ git_gpg_format }}"
 
 - name: Configure Git SSH signing program to 1Password
   ansible.builtin.git_config:
     name: gpg.ssh.program
     scope: global
-    value: "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+    value: "{{ git_gpg_ssh_program }}"
