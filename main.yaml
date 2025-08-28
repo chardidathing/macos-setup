@@ -1,6 +1,6 @@
 ---
 - name: macOS Setup - chardidathing
-  hosts: localhost
+  hosts: local
 
   vars_files:
     - config.yaml
@@ -15,9 +15,14 @@
       when: configure_dock
 
   tasks:
+    - name: Kill Dock after configuration
+      ansible.builtin.command: killall Dock
     - name: Configure Terminal
       ansible.builtin.include_tasks: tasks/terminal.yaml
       when: configure_terminal
     - name: Configure Git
       ansible.builtin.include_tasks: tasks/git.yaml
       when: configure_git
+    - name: Configure SSH
+      ansible.builtin.include_tasks: tasks/ssh.yaml
+      when: configure_ssh

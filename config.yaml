@@ -5,3 +5,23 @@ configure_brew: true # Install Homebrew packages
 configure_mas: true # Install Mac App Store apps
 configure_dock: true # Configure Dock
 configure_git: true # Configure Git
+configure_ssh: true # Configure SSH
+
+dockitems_remove:
+  - Safari
+  - Messages
+  - Mail
+  - Maps
+  - Photos
+  - Contacts
+  - FaceTime
+  - Notes
+  - Home
+  - Freeform
+  - Podcasts
+  - TV
+  - Weather
+  - News
+  - Music
+  - Reminders
+  - Calendar
